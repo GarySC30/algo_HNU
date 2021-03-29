@@ -57,5 +57,3 @@ int main()
 	cout << "\n最小计算量的值为：" << m[1][n] << endl;
 	return 0;
 }
-
-
