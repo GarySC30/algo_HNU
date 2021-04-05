@@ -30,11 +30,11 @@ int PartSort(int* array,int left,int right)
 	int& key = array[right];
 	while(left < right)
 	{
-		while(left < right && array[left] <= key)
+		while(left < right && array[left] >= key)
 		{
 			++left;
 		}
-		while(left < right && array[right] >= key)
+		while(left < right && array[right] <= key)
 		{
 			--right;
 		}
