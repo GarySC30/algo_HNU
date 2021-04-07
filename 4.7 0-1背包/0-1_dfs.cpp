@@ -21,10 +21,10 @@ int main() {
     freopen("01_dfs_output.txt", "w", stdout);
     cin >> n >> maxweight;
     for(int i=0;i<n;i++)
-        cin >> v[i] >> w[i];
+        cin >> w[i] >> v[i];
     dfs(0, 0, 0);
     cout << maxvalue;
     return 0;
 }
 
-// 不太对
+// 完成算法
