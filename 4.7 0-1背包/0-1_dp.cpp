@@ -1,18 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int MAXN = 1005;
-int n, maxvalue;
+int w[MAXN], v[MAXN], val[MAXN];
+int maxweight, n;
 
-double binaryKnapsack(int numItems, int *w, double *v, int capacity) {
-    int i, p;   // 从1-i个物品，背包可用容量为p
-    double Val[n][maxvalue]; // 存储不同情况下的最大容纳容量
-    memset(Val, 0, sizeof(Val)); // 初始化
-    for (i = 0; i < numItems; i++)  
-        for (p = 0; p <= capacity; p++) {  // 根据递推方程进行穷举
-            if(p < w[i])
-                Val[i][p] = Val[i - 1][p];   // 放不下的情况
-            else if (p >= w[i] && Val[i - 1][p] < Val[i - 1][p - w[i]] + v[i])
-                Val[i][p] = Val[i][p - w[i]] + v[i]; // 放得下，总容量挖掉w[i]
+int binaryPack(int n, int maxweight) {
+    for(int i=0;i<n;i++) {
+        for(int p=maxweight;p>=0;p--) {
+            if(p >= w[i] && val[p] < val[p-w[i]]+v[i]) {
+                val[p] = val[p-w[i]]+v[i];
+            }
         }
-    return Val[numItems - 1][capacity]; // 得到结果
+    }
+    return val[maxweight];
+}
+
+int main() {
+    freopen("01_dp_input.txt", "r", stdin);
+    freopen("01_dp_output.txt", "w", stdout);
+    cin >> n >> maxweight;
+    for (int i = 0; i < n; i++)
+        cin >> w[i] >> v[i];
+    cout << binaryPack(n, maxweight);
+    return 0;
 }
