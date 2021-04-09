@@ -4,11 +4,11 @@ const int MAXN = 1005;
 int w[MAXN], v[MAXN], val[MAXN];
 int maxweight, n;
 
-int binaryPack(int n, int maxweight) {
-    for(int i=0;i<n;i++) {
-        for(int p=maxweight;p>=0;p--) {
-            if(p >= w[i] && val[p] < val[p-w[i]]+v[i]) {
-                val[p] = val[p-w[i]]+v[i];
+int binaryPack(int n, int maxweight) {  // 从1-i个物品，背包可用容量为p
+    for(int i=0;i<n;i++) {  
+        for(int p=maxweight;p>=0;p--) { // 根据递推方程进行穷举
+            if(p >= w[i] && val[p] < val[p-w[i]]+v[i]) { 
+                val[p] = val[p-w[i]]+v[i]; // 放得下，总容量挖掉w[i]
             }
         }
     }
